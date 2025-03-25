@@ -1,0 +1,41 @@
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+export default function App() {
+  const [user, setUser] = useState(null);
+  const [chords, setChords] = useState([
+    { id: 1, title: "Wonderwall - Oasis", chords: "Em7 G D A", user: "JohnDoe", badge: "Expert" },
+    { id: 2, title: "Let It Be - The Beatles", chords: "C G Am F", user: "AdminUser", badge: "Administrator" },
+  ]);
+
+  const handleLogin = () => {
+    setUser({ name: "NewUser", badge: "Regular" });
+  };
+
+  return (
+    <div className="p-4 max-w-2xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Guitar Chord Sharing</h1>
+      {!user ? (
+        <Button onClick={handleLogin}>Login</Button>
+      ) : (
+        <div>
+          <p>Welcome, {user.name}! ({user.badge})</p>
+        </div>
+      )}
+      
+      <h2 className="text-xl font-semibold mt-6">Shared Chords</h2>
+      <div className="space-y-4 mt-2">
+        {chords.map((chord) => (
+          <Card key={chord.id} className="p-3 border rounded-lg">
+            <CardContent>
+              <h3 className="font-semibold">{chord.title}</h3>
+              <p className="text-gray-600">Chords: {chord.chords}</p>
+              <p className="text-sm text-gray-500">Shared by {chord.user} ({chord.badge})</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}
