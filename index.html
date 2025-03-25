@@ -19,17 +19,17 @@ export default function App() {
       {!user ? (
         <Button onClick={handleLogin}>Login</Button>
       ) : (
-        <div>
-          <p>Welcome, {user.name}! ({user.badge})</p>
+        <div className="mb-4">
+          <p className="text-lg font-medium">Welcome, {user.name}! ({user.badge})</p>
         </div>
       )}
       
       <h2 className="text-xl font-semibold mt-6">Shared Chords</h2>
       <div className="space-y-4 mt-2">
         {chords.map((chord) => (
-          <Card key={chord.id} className="p-3 border rounded-lg">
+          <Card key={chord.id} className="p-3 border rounded-lg shadow-md">
             <CardContent>
-              <h3 className="font-semibold">{chord.title}</h3>
+              <h3 className="font-semibold text-lg">{chord.title}</h3>
               <p className="text-gray-600">Chords: {chord.chords}</p>
               <p className="text-sm text-gray-500">Shared by {chord.user} ({chord.badge})</p>
             </CardContent>
