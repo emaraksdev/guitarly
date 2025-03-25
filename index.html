@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./styles.css";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -12,23 +13,23 @@ export default function App() {
   };
 
   return (
-    <div className="p-4 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Guitar Chord Sharing</h1>
+    <div className="container">
+      <h1>Guitar Chord Sharing</h1>
       {!user ? (
-        <button className="px-4 py-2 bg-blue-500 text-white rounded" onClick={handleLogin}>Login</button>
+        <button className="btn" onClick={handleLogin}>Login</button>
       ) : (
-        <div className="mb-4">
-          <p className="text-lg font-medium">Welcome, {user.name}! ({user.badge})</p>
+        <div className="welcome">
+          <p>Welcome, {user.name}! ({user.badge})</p>
         </div>
       )}
-
-      <h2 className="text-xl font-semibold mt-6">Shared Chords</h2>
-      <div className="space-y-4 mt-2">
+      
+      <h2>Shared Chords</h2>
+      <div className="chords-container">
         {chords.map((chord) => (
-          <div key={chord.id} className="p-3 border rounded-lg shadow-md">
-            <h3 className="font-semibold text-lg">{chord.title}</h3>
-            <p className="text-gray-600">Chords: {chord.chords}</p>
-            <p className="text-sm text-gray-500">Shared by {chord.user} ({chord.badge})</p>
+          <div key={chord.id} className="card">
+            <h3>{chord.title}</h3>
+            <p className="chord-text">Chords: {chord.chords}</p>
+            <p className="user-info">Shared by {chord.user} ({chord.badge})</p>
           </div>
         ))}
       </div>
